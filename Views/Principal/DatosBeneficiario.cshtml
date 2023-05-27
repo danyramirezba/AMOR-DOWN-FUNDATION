@@ -1,0 +1,509 @@
+﻿@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-success">
+        <ul>
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <li>@error.ErrorMessage</li>
+            }
+        </ul>
+    </div>
+}
+
+@if (ViewData["Mensaje"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewData["Mensaje"]
+    </div>
+}
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="~/Content/css/ObtenerDatosBenef.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm">
+                <form class="form-horizontal" method="post">
+                    <fieldset>
+                        <legend class="text-center header">FICHA DE INGRESO</legend>
+                        <legend class="text-left header">DATOS PERSONALES</legend>
+                        <form action="@Url.Action("DatosBeneficiario","Principal")" method="post" enctype="multipart/form-data" @*onclick="subirArchivos()"*@>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="codigo_benf" name="codigo_benf" type="text" placeholder="CODIGO" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <select id="codigo_empresa" name="codigo_emp" type="text" placeholder="EMPRESA" class="form-control">
+                                        <option value="1">COATEPEQUE</option>
+                                        <option value="2">PAJAPITA</option>
+                                        <option value="3">SAN MARCOS</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="nombre" name="nombre" type="text" placeholder="NOMBRE" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-birthday-cake fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="fecha" name="fecha_nacimiento" type="date" placeholder="FECHA DE NACIMIENTO" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-graduation-cap fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="escolaridad" name="escolaridad" type="text" placeholder="ESCOLARIDAD" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-calendar fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="fechain" name="fecha_ingreso" type="date" placeholder="FECHA DE INGRESO" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-address-card fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="direccion" name="direccion" type="text" placeholder="DIRECCION" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-female fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="nombre_madre" name="nombre_madre" type="text" placeholder="NOMBRE DE LA MADRE" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-graduation-cap fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="escolaridad_madre" name="escolaridad_m" type="text" placeholder="ESCOLARIDAD" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-tasks fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="ocupacion_madre" name="ocupacion_m" type="text" placeholder="OCUPACION " class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="telefono_madre" name="telefono_m" type="number" placeholder="TELEFONO" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-male fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="nombre_padre" name="nombre_padre" type="text" placeholder="NOMBRE DEL PADRE" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-male fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="edad_padre" name="edad_padre" type="text" placeholder="EDAD" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-graduation-cap fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="escolaridad_padre" name="escolaridad_p" type="text" placeholder="ESCOLARIDAD" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-tasks fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="ocupacion_padre" name="ocupacion_p" type="text" placeholder="OCUPACION " class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="telefono_padre" name="telefono_p" type="number" placeholder="TELEFONO" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-#3707 bigicon" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="hermanos" name="num_hermanos" type="number" placeholder="NO. DE HERMANOS" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <input id="lugar_ocupa" name="lugar_que_ocupa" type="text" placeholder="LUGAR QUE OCUPA" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" id="message" name="motivo_de_consulta" type="text" placeholder="MOTIVO DE CONSULTA/QUIEN REFIERE" rows="7"></textarea>
+                                </div>
+                            </div>
+
+                            <legend class="text-left header">HISTORIAL CLINICO</legend>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="J"></i></span>
+                                <div class="col-md-8">
+                                    <input id="enfermedades_padecientes" name="enfermedades_padecientes" type="text" placeholder="ENFERMEDADES QUE PADECE" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class=""></i></span>
+                                <div class="col-md-8">
+                                    <input id="medicamentos" name="medicamentos" type="text" placeholder="MEICAMENTOS QUE TOMA" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class=" radio">
+                                <h6>VACUNAS</h6>
+                                <label>
+                                    <input type="radio" name="esquema_vacunas" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="esquema_vacunas" value="no"> No
+                                </label>
+                            </div>
+
+
+                            <div class=" radio">
+                                <h6>PRUEBAS AUDITIVAS</h6>
+                                <label>
+                                    <input type="radio" name="pruebas_auditivas" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="pruebas_auditivas" value="no"> No
+                                </label>
+                            </div>
+
+
+                            <div class=" radio">
+                                <h6>PRUEBAS OFTALMOLOGICAS</h6>
+                                <label>
+                                    <input type="radio" name="pruebas_oftalmologicas" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="pruebas_oftalmologicas" value="no"> No
+                                </label>
+                            </div>
+
+
+                            <div class=" radio">
+                                <h6>APARATO AUDTIVO</h6>
+                                <label>
+                                    <input type="radio" name="aparato_auditivo" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="aparato_auditivo" value="no"> No
+                                </label>
+                            </div>
+
+
+                            <div class=" radio">
+                                <h6>LENTES</h6>
+                                <label>
+                                    <input type="radio" name="lentes" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="lentes" value="no"> No
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class=""></i></span>
+                                <div class="col-md-8">
+                                    <input id="HC_otras" name="otras" type="text" placeholder="OTRAS" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class=""></i></span>
+                                <div class="col-md-8">
+                                    <input id="HC_cirugias" name="cirugias" type="text" placeholder="CIRUGIAS" class="form-control">
+                                </div>
+                            </div>
+
+                            <legend class="text-left header">ANTECEDENTES PRENATALES</legend>
+
+
+                            <div class=" radio">
+                                <h6>EMBARAZO TERMINO</h6>
+                                <label>
+                                    <input type="radio" name="EMBARAZO_TERMINO" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="EMBARAZO_TERMINO" value="no"> No
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class=""></i></span>
+                                <div class="col-md-8">
+                                    <input id="OBSERVACIONES_TE" name="OBSERVACIONES_TE" type="text" placeholder="OBSERVACIONES_TE" class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class=" radio">
+                                <h6>PARTO NORMAL</h6>
+                                <label>
+                                    <input type="radio" name="parto_normal" value="SI"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="parto_normal" value="NO"> No
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class=""></i></span>
+                                <div class="col-md-8">
+                                    <input id="observaciones_parto" name="observaciones_parto" type="text" placeholder="OBSERVACIONES_TE" class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class=""></i></span>
+                                <div class="col-md-8">
+                                    <input id="PRE_complicaciones" name="complicaciones_embarazo" type="text" placeholder="TUVO COMPLICACIONES DURANTE EL EMBARAZO " class="form-control">
+                                </div>
+                            </div>
+
+                            <legend class="text-left header">ANTECEDENTES PERINATALES</legend>
+
+
+                            <div class=" radio">
+                                <h6>EL NIÑO LLORO</h6>
+                                <label>
+                                    <input type="radio" name="nino_lloro" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="nino_lloro" value="no"> No
+                                </label>
+                            </div>
+
+
+                            <div class=" radio">
+                                <h6>COLORACION DEL NIÑO</h6>
+                                <label>
+                                    <input type="radio" name="coloracion" value="Normal"> NORMAL
+                                </label>
+                                <label>
+                                    <input type="radio" name="coloracion" value="Anormal"> ANORMAL
+                                </label>
+                            </div>
+
+                            <div class=" radio">
+                                <h6>ESTUVO EN INCUBADORA</h6>
+                                <label>
+                                    <input type="radio" name="incubadora" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="incubadora" value="no"> No
+                                </label>
+                            </div>
+
+                            <div class=" radio">
+                                <h6>COLOR AL NACER</h6>
+                                <label>
+                                    <input type="radio" name="color_nacimiento" value="Amarillo"> AMARILLO
+                                </label>
+                                <label>
+                                    <input type="radio" name="color_nacimiento" value="Morado"> MORADO
+                                </label>
+                            </div>
+
+                            <legend class="text-left header">ANTECEDENTES POSTNATALES</legend>
+
+
+                            <div class=" radio">
+                                <h6>TRATAMIENTO POSTPARTO</h6>
+                                <label>
+                                    <input type="radio" name="tratamiento_postparto" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="tratamiento_postparto" value="no"> No
+                                </label>
+
+                            </div>
+
+
+                            <div class=" radio">
+                                <h6>INFECCIONES</h6>
+                                <label>
+                                    <input type="radio" name="infecciones" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="infecciones" value="no"> No
+                                </label>
+                            </div>
+
+                            <div class=" radio">
+                                <h6>FIEBRES</h6>
+                                <label>
+                                    <input type="radio" name="fiebres" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="fiebres" value="no"> No
+                                </label>
+                            </div>
+
+                            <div class=" radio">
+                                <h6>CONVULSIONES</h6>
+                                <label>
+                                    <input type="radio" name="convulciones" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="convulciones" value="no"> No
+                                </label>
+                            </div>
+
+                            <div class=" radio">
+                                <h6>TIENE LENGUAJE</h6>
+                                <label>
+                                    <input type="radio" name="tiene_lenguaje" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="tiene_lenguaje" value="no"> No
+                                </label>
+                            </div>
+
+                            <div class=" radio">
+                                <h6>CAMINA</h6>
+                                <label>
+                                    <input type="radio" name="camina" value="si"> Sí
+                                </label>
+                                <label>
+                                    <input type="radio" name="camina" value="no"> No
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class=""></i></span>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" id="message" name="observaciones" type="text" placeholder="OBSERVACIONES" rows="7"></textarea>
+                                </div>
+                            </div>
+
+
+                            @*<div class="form-group">
+            <legend>HOJA DE GRATUIDAD</legend>
+            <label>Archivo:</label>
+            <input name="HOJA_DE_GRATUIDAD" type="file"/>
+        </div>
+
+
+        <div class="form-group">
+            <legend>DOCUMENTO CENTRO DE SALUD</legend>
+            <label>Archivo:</label>
+            <input name="DOC_CENTRO_SALUD" type="file"/>
+        </div>*@
+
+                            @*<div class="row">
+        <div class="text-center mt-10">
+            <input type="file" multiple id="inputSubirArchivos" />
+            <br /><br />
+            <div id="loaderArchivos"></div>*@
+
+
+
+                            <div class="col-md-12 text-left">
+                                <button type="submit" id="btnSubirArchivos" class="btn btn-success btn-lg btn-comprobar" @*onclick="subirArchivos()"*@>INGRESAR</button>
+                            </div>
+
+
+                            @*</div>
+
+        </div>*@
+
+
+                        </form>
+
+                    </fieldset>
+                </form>
+                <div class="d-flex justify-content-center mt-3 login_container">
+                            <button type="submit" name="button" class="btn login_btn" href="@Url.Action("Index", "Home")">REGRESAR</button>
+                        </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script>
+
+    function subirArchivos() {
+        var totalFiles = document.getElementById('inputSubirArchivos').files.length;
+        var formData = new FormData();
+
+        var esValido = true;
+        if (totalFiles == 0) {
+            esValido = false;
+        }
+
+        if (esValido == true) {
+          
+            for (var i = 0; i < totalFiles; i++) {
+                formData.append("archivos", document.getElementById('inputSubirArchivos').files[i]);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/Principal/DatosBeneficiario",
+                data: formData,
+                contentType: false,
+                processData: false,
+                cache: false,
+                beforeSend: function () {
+                    $('#loaderArchivos').html(`<p>SUBIENDO ARCHIVOS...</p>`);
+                },
+                success: function (response) {
+                    var respuesta = response;
+                    console.log(respuesta);
+
+                    $('#loaderArchivos').html(`<p>${respuesta.Mensaje_Respuesta}</p>`);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                    alert("Ocurrió un error al verificar los CFDI(s): " + jqXHR);
+                }
+            });
+        }
+    }
+
+</script>*@

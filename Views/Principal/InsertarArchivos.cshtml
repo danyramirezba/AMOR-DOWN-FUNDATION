@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="row">
+    <form action="@Url.Action("InsertarArchivos","Principal")" method="post" enctype="multipart/form-data" onclick="subirArchivos()">
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon fa-2x" style="color:cornflowerblue"></i></span>
+            <div class="col-md-8">
+                <input id="codigo_benf" name="codigo_benf" type="text" placeholder="CODIGO" class="form-control">
+            </div>
+        </div>
+
+        <div class="text-center mt-10">
+            <input type="file" multiple id="inputSubirArchivos" />
+            <br /><br />
+            <div id="loaderArchivos"></div>
+
+            <div id="btnSubirArchivos" class="container-btn-subir-archivos">
+                <button class="btn btn-success btn-comprobar" onclick="subirArchivos()">INGRESAR DOCUMENTOS</button>
+            </div>
+        </div>
+    </form>
+
+        <script>
+
+            function subirArchivos() {
+                var totalFiles = document.getElementById('inputSubirArchivos').files.length;
+                var formData = new FormData();
+
+                var esValido = true;
+                if (totalFiles == 0) {
+                    esValido = false;
+                }
+
+                if (esValido == true) {
+
+                    for (var i = 0; i < totalFiles; i++) {
+                        formData.append("archivos", document.getElementById('inputSubirArchivos').files[i]);
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/Principal/InsertarArchivos",
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        cache: false,
+                        beforeSend: function () {
+                            $('#loaderArchivos').html(`<p>SUBIENDO ARCHIVOS...</p>`);
+                        },
+                        success: function (response) {
+                            var respuesta = response;
+                            console.log(respuesta);
+
+                            $('#loaderArchivos').html(`<p>${respuesta.Mensaje_Respuesta}</p>`);
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR);
+                            console.log(textStatus);
+                            console.log(errorThrown);
+                            alert("Ocurrió un error al verificar los CFDI(s): " + jqXHR);
+                        }
+                    });
+                }
+            }
+
+        </script>
+
+</div>

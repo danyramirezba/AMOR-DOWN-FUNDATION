@@ -1,0 +1,60 @@
+﻿@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="~/Content/css/citas.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm">
+                <form class="form-horizontal" method="post">
+                    <fieldset>
+                        <legend class="text-center header">HORARIOS Y CITAS</legend>
+
+                        <form action="@Url.Action("DatosBeneficiario","Acceso")" method="post">
+                            <div class="form-group">
+
+                                <div class="form-group">
+                                    <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon fa-2x" style="color:cornflowerblue"></i></span>
+                                    <div class="col-md-8">
+                                        <input id="CODIGO_BENF" name="CODIGO_BENF" type="text" placeholder="CODIGO BENEFICIARIO" class="form-control">
+                                    </div>
+                                </div>
+
+                                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-categoría bigicon fa-2x" style="color:cornflowerblue"></i></span>
+                                <div class="col-md-8">
+                                    <select id="servicios" name="servicios" type="text" placeholder="SERVICIOS" class="form-control">
+                                        <option value="">DESGLOSE Y SELECCIONE SERVICIO</option>
+                                        <option value="1">TERAPIA ET</option>
+                                        <option value="2">TERAPIA IS</option>
+                                        <option value="3">TERAPIA FH</option>
+                                        <option value="4">TERAPIA CL</option>
+                                        <option value="5">TERAPIA PO</option>
+                                        <option value="6">TERAPIA OCUPACIONAL</option>
+                                        <option value="7">PSICOLOGIA</option>
+                                        <option value="8">SERVICIO MEDICO</option>
+                                        <option value="9">SERVICIO ODONTOLOGICO</option>
+                                        
+                                    </select>
+                                    <hr />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 text">
+                                    <button type="submit" class="btn btn-primary btn-lg">ASIGNAR SERVICIO</button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
